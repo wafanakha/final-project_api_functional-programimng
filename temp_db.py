@@ -1,7 +1,7 @@
 from __future__ import print_function
 
 import mysql.connector
-from mysql.connector import errorcode
+from mysql.connector import errorcode, Error
 
 DB_NAME = 'employees'
 
@@ -74,3 +74,20 @@ TABLES['titles'] = (
     "  CONSTRAINT `titles_ibfk_1` FOREIGN KEY (`emp_no`)"
     "     REFERENCES `employees` (`emp_no`) ON DELETE CASCADE"
     ") ENGINE=InnoDB")
+
+
+hostname = "ze7.h.filess.io"
+database = "hunterhub_raineleven"
+port = "3307"
+username = "hunterhub_raineleven"
+password = "d90350b1dd4b20e532cc3a001a5c79fd6a25133e"
+
+try:
+    connection = mysql.connector.connect(
+        host=hostname, database=database, user=username, password=password, port=port)
+    if connection.is_connected():
+        cursor = connection.cursor()
+        cursor.execute("show tables")
+
+except Error as e:
+    print("Error while connecting to MySQL", e)
