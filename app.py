@@ -24,6 +24,11 @@ def db_conn():
     return conn
 
 
+@app.route("/")
+def land():
+    return ("Welcome To DND Character Creation")
+
+
 @app.route("/character", methods=['GET', 'POST'])
 def play():
     conn = db_conn()
