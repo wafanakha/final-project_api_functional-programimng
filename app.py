@@ -33,12 +33,12 @@ def play():
         cursor.execute("SELECT * from Player")
         player = [
             dict(
-                id=row['Id'],
-                name=row['Name'],
-                level=row['Level'],
-                clas=row['Class'],
-                race=row["Race"],
-                gender=row["Gender"]
+                Id=row['Id'],
+                Name=row['Name'],
+                Level=row['Level'],
+                Class=row['Class'],
+                Race=row["Race"],
+                Gender=row["Gender"]
             )
             for row in cursor.fetchall()
         ]
