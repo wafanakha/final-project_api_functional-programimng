@@ -54,7 +54,7 @@ def play():
         cursor.execute(
             "insert into Player (Name, Level, Class, Race, Gender) values (%s, %s, %s, %s, %s)", (add_name, add_level, add_class, add_race, add_gender))
         conn.commit()
-        return ("player succesfully created")
+        return ("player succesfully created!")
 
 
 @app.route("/player/<int:id>", methods=['GET', 'PUT', 'DELETE'])
@@ -68,6 +68,17 @@ def oneplay(id):
 
         if player is not None:
             return jsonify(player)
+
+    if request.method == 'PUT':
+        name = request.form['Name']
+        level = request.form['Level']
+        race = request.form['Race']
+        gender = request.form['Gender']
+        clas = request.form['Class']
+        cursor.execute(
+            "update Player set Name = %s, Level = %s, Race = %s, Gender = %s, class = %s", (name, level, race, gender, clas))
+        conn.commit()
+        return ("Player data updated!")
 
 
 if __name__ == "__main__":
