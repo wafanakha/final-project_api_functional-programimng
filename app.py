@@ -43,7 +43,8 @@ def play():
                 Level=row['Level'],
                 Class=row['Class'],
                 Race=row["Race"],
-                Gender=row["Gender"]
+                Gender=row["Gender"],
+                About=row["About"]
             )
             for row in cursor.fetchall()
         ]
@@ -56,8 +57,9 @@ def play():
         add_race = request.form['Race']
         add_gender = request.form['Gender']
         add_class = request.form['Class']
+        add_about = request.form['About']
         cursor.execute(
-            "insert into Player (Name, Level, Class, Race, Gender) values (%s, %s, %s, %s, %s)", (add_name, add_level, add_class, add_race, add_gender))
+            "insert into Player (Name, Level, Class, Race, Gender, About) values (%s, %s, %s, %s, %s, %s)", (add_name, add_level, add_class, add_race, add_gender, add_about))
         conn.commit()
         return ("New character succesfully created!")
 
@@ -80,8 +82,9 @@ def oneplay(id):
         race = request.form['Race']
         gender = request.form['Gender']
         clas = request.form['Class']
+        about = request.form['About']
         cursor.execute(
-            "update Player set Name = %s, Level = %s, Race = %s, Gender = %s, class = %s where Id = %s", (name, level, race, gender, clas, id))
+            "update Player set Name = %s, Level = %s, Race = %s, Gender = %s, Class = %s, About = %s where Id = %s", (name, level, race, gender, clas, about, id))
         conn.commit()
         return ("Character data with id = {} updated!".format(id))
 
