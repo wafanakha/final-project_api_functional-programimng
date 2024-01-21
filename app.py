@@ -24,7 +24,7 @@ def db_conn():
     return conn
 
 
-@app.route("/player", methods=['GET'])
+@app.route("/player", methods=['GET', 'POST'])
 def play():
     conn = db_conn()
     cursor = conn.cursor()
@@ -44,6 +44,17 @@ def play():
         ]
         if player is not None:
             return jsonify(player)
+
+    if request.method == "POST":
+        add_name = request.form['Name']
+        add_level = request.form['Level']
+        add_race = request.form['Race']
+        add_gender = request.form['Gender']
+        add_class = request.form['Class']
+        cursor.execute(
+            "insert into Player (Name, Level, Class, Race, Gender) values (%s, %s, %s, %s, %s)", (add_name, add_level, add_class, add_race, add_gender))
+        conn.commit()
+        return ("player succesfully created")
 
 
 if __name__ == "__main__":
