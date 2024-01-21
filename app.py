@@ -57,5 +57,18 @@ def play():
         return ("player succesfully created")
 
 
+@app.route("/player/<int:id>", methods=['GET', 'PUT', 'DELETE'])
+def oneplay(id):
+    conn = db_conn()
+    cursor = conn.cursor()
+
+    if request.method == 'GET':
+        cursor.execute("select * from Player where id = %s", (id))
+        player = cursor.fetchone()
+
+        if player is not None:
+            return jsonify(player)
+
+
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=5000)
