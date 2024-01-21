@@ -7,11 +7,12 @@ import pymysql
 app = Flask(__name__)
 
 conn = pymysql.connect(
-    hostname="ze7.h.filess.io",
-    database="hunterhub_raineleven",
+    hostname="eyn.h.filess.io",
+    database="MMOPlayerDatabase_billrough",
     port="3307",
-    username="hunterhub_raineleven",
-    password="d90350b1dd4b20e532cc3a001a5c79fd6a25133e",
+    username="MMOPlayerDatabase_billrough",
+    password="b8687aac2fc979066ede1e01259edcc8db5a0b83",
     cursorclass=pymysql.cursors.DictCursor
 )
+
 cursor = conn.cursor()
